@@ -41,10 +41,7 @@ if __name__ == '__main__':
     df, FEATURES = load_and_engineer()
     X = df[FEATURES]
     y = df['delay_flag']
-
-    print("=" * 50)
     print("FEATURE ENGINEERING COMPLETE")
-    print("=" * 50)
     print(f"Feature matrix shape : {X.shape}")
     print(f"Target distribution  : {y.value_counts().to_dict()}")
     print(f"\nFeatures ({len(FEATURES)}):")
