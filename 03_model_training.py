@@ -42,9 +42,8 @@ models = {
 }
 
 results = {}
-print("\n" + "=" * 50)
+print("\n" )
 print("MODEL RESULTS")
-print("=" * 50)
 
 for name, model in models.items():
     Xtr = X_train_s if 'Logistic' in name else X_train
@@ -60,7 +59,7 @@ for name, model in models.items():
         'recall':    recall_score(y_test, y_pred, average='weighted'),
         'roc_auc':   roc_auc_score(y_test, y_prob),
     }
-    print(f"\n{'─'*40}")
+    print(f"\n")
     print(f"  {name}")
     print(f"  F1={results[name]['f1']:.4f}  ROC-AUC={results[name]['roc_auc']:.4f}")
     print(classification_report(y_test, y_pred))
