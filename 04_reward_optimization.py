@@ -25,12 +25,6 @@ df_test['predicted_delay'] = xgb_model.predict(X_test)
 
 
 def compute_reward(row):
-    """
-    +10  on-time delivery
-    -15  delayed delivery
-    +5   high-priority project served
-    -2   per full excess hour beyond expected
-    """
     reward = 10 if row['delay_flag'] == 0 else -15
     if row['prj_priority_level'] == 'High':
         reward += 5
@@ -41,9 +35,8 @@ def compute_reward(row):
 
 df_test['reward'] = df_test.apply(compute_reward, axis=1)
 
-print("=" * 50)
 print("REWARD ANALYSIS")
-print("=" * 50)
+
 print(f"Average reward : {df_test['reward'].mean():.2f}")
 print(f"Min reward     : {df_test['reward'].min():.0f}")
 print(f"Max reward     : {df_test['reward'].max():.0f}")
@@ -56,9 +49,8 @@ df_test['priority_score'] = (
     (1 / (df_test['distance_km'] / df_test['distance_km'].max() + 0.01)) * 2      
 )
 
-print("\n" + "=" * 50)
+print("\n" )
 print("TOP 10 DELIVERIES TO DISPATCH FIRST")
-print("=" * 50)
 top10 = df_test.nlargest(10, 'priority_score')[
     ['delivery_id', 'factory_id', 'project_id', 'distance_km',
      'prj_priority_level', 'delay_prob', 'priority_score']
