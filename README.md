@@ -1,5 +1,6 @@
 # ML Spark Challenge — Smart Procurement: Delivery Delay Prediction
 ##  Given a data of 1200 ,but 1196 of them are delayed and only 4 are on time , therefore the data is highly skewed and accuracy is not a metric of evalution bcz i achieved 99.7% accuracy on svm model but it has no use 
+### To over come this issue i am using Class weighting which tells the algorithm: "a mistake on the minority class is far more costly than a mistake on the majority class." It works by multiplying each sample's contribution to the loss/impurity by its class weight. 
 ## Setup
 ```bash
 pip install pandas numpy scikit-learn xgboost matplotlib seaborn
